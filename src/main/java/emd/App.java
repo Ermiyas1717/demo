@@ -1,9 +1,13 @@
 package emd;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -45,19 +49,32 @@ public class App {
         System.out.println("Remaining time: " + remainingDays + " days, " +
                 remainingHours + " hours, " + remainingMinutes + " minutes, " + remainingSeconds + " seconds.");
 
-        array.add(tracer.toDoName);
-        array.add(tracer.toDoDate);
-        object.put(tracer.toDoID, array);
-
+        JSONParser parser = new JSONParser();
         try {
-            String path = "C:\\Users\\al\\Desktop\\projects\\maven\\demo\\src\\main\\file.json";
-            FileWriter file = new FileWriter(path);
-            String json = object.toJSONString();
-            file.write(json);
-            file.close();
-        } catch (IOException io) {
-            System.out.println("Error while writing to file.");
-        }
+            array.add(tracer.toDoName);
+            array.add(tracer.toDoDate);
+            object.put(tracer.toDoID, array);
 
+            try {
+                String path = "C:\\Users\\al\\Desktop\\projects\\maven\\demo\\src\\main\\file.json";
+                FileReader fileReader = new FileReader(path);
+
+                JSONObject updateJson = (JSONObject) parser.parse(fileReader);
+
+                fileReader.close();
+
+                updateJson.putAll(object);
+
+                FileWriter fileWriter = new FileWriter(path);
+                String json = updateJson.toJSONString();
+                fileWriter.write(json);
+                fileWriter.close();
+            } catch (IOException io) {
+                System.out.println("Error while writing to file.");
+            }
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
