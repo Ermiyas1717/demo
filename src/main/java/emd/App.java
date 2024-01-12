@@ -56,7 +56,7 @@ public class App {
             object.put(tracer.toDoID, array);
 
             try {
-                String path = "C:\\Users\\al\\Desktop\\projects\\maven\\demo\\src\\main\\file.json";
+                String path = "C:\\Users\\al\\Desktop\\projects\\maven\\demo\\src\\file.json";
                 FileReader fileReader = new FileReader(path);
 
                 JSONObject updateJson = (JSONObject) parser.parse(fileReader);

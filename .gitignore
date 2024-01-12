@@ -1,1 +1,2 @@
-src\main\file.json
+/file.json
+file.json.*
