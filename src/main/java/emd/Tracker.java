@@ -1,5 +1,6 @@
 package emd;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -42,10 +43,10 @@ public class Tracker {
         long remainingMinutes = duration.toMinutes() % 60;
         long remainingSeconds = duration.getSeconds() % 60;
 
-        System.out.println("to Do project ID: " + toDoID);
-        System.out.println("to Do Name: " + toDoName);
+        System.out.println("\n ==============================================");
+        System.out.println("\nTo Do project ID: " + toDoID);
+        System.out.println("To Do Name: " + toDoName);
         System.out.println("Remaining time: " + remainingDays + " days, " +
                 remainingHours + " hours, " + remainingMinutes + " minutes, " + remainingSeconds + " seconds.");
     }
-
 }
